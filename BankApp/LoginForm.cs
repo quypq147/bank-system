@@ -6,7 +6,6 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BankClient.Api;
-using BankClient.Models;
 
 namespace BankClient
 {
@@ -17,16 +16,15 @@ namespace BankClient
         public LoginForm()
         {
             InitializeComponent();
-            // Sự kiện (phòng Designer chưa auto-wire)
+
+            // Wire events
             this.Load += LoginForm_Load;
             btnLogin.Click += btnLogin_Click;
             chkShowPwd.CheckedChanged += chkShowPwd_CheckedChanged;
 
             // Enter để submit, Esc để đóng
             this.AcceptButton = btnLogin;
-            this.CancelButton = btnCancel; // nút ẩn để Esc hoạt động
-
-            
+            this.CancelButton = btnCancel;
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
@@ -49,10 +47,7 @@ namespace BankClient
             progress.Style = isBusy ? ProgressBarStyle.Marquee : ProgressBarStyle.Blocks;
         }
 
-        private async void btnLogin_Click(object sender, EventArgs e)
-        {
-            await DoLoginAsync();
-        }
+        private async void btnLogin_Click(object sender, EventArgs e) => await DoLoginAsync();
 
         private async Task DoLoginAsync()
         {
@@ -69,17 +64,48 @@ namespace BankClient
             {
                 SetBusy(true, "Đang đăng nhập...");
 
-                var token = await BankApi.LoginAsync(email, pwd); // ✅ Login trước
-                Console.WriteLine("[CLIENT] Token nhận được:\n" + token);
+                // 1) Đăng nhập API (bạn đã có BankApi.LoginAsync trước đây)
+                var token = await BankApi.LoginAsync(email, pwd); // <- giữ nguyên cách gọi hiện tại
                 JwtToken = token;
 
-                var roles = TryExtractRoles(token);
+                // 2) Lưu token toàn cục cho mọi request
+                ApiClient.SetToken(token);
+
+                // 3) Tách role từ JWT (bạn đã có sẵn TryExtractRoles)
+                var roles = TryExtractRoles(token); // dùng lại logic cũ:contentReference[oaicite:1]{index=1}
                 lblStatus.Text = roles.Length > 0
                     ? $"Đăng nhập thành công ({string.Join(", ", roles)})"
                     : "Đăng nhập thành công!";
 
-                DialogResult = DialogResult.OK;
-                Close();
+                // 4) Mở form theo role
+                Form next;
+                if (roles.Any(r => string.Equals(r, "Admin", StringComparison.OrdinalIgnoreCase)))
+                {
+                    next = new MainForm();
+                }
+                else
+                {
+                    next = new UserForm();
+                }
+
+                // 5) Ẩn LoginForm → mở form chính; khi form chính đóng, quyết định quay lại login hay thoát app
+                this.Hide();
+                next.FormClosed += (_, __) =>
+                {
+                    // Nếu người dùng bấm "Đăng xuất" ở form chính -> Token đã Clear -> quay lại Login
+                    if (string.IsNullOrEmpty(ApiClient.Token))
+                    {
+                        txtPassword.Text = "";
+                        lblStatus.Text = "Đã đăng xuất. Vui lòng đăng nhập lại.";
+                        this.Show();
+                    }
+                    else
+                    {
+                        // Đóng bình thường (Alt+F4, v.v.)
+                        this.Close();
+                    }
+                };
+                next.Show();
             }
             catch (Exception ex)
             {
@@ -103,8 +129,6 @@ namespace BankClient
                 SetBusy(false);
             }
         }
-        
-
 
         private void chkShowPwd_CheckedChanged(object sender, EventArgs e)
         {
@@ -112,7 +136,8 @@ namespace BankClient
         }
 
         /// <summary>
-        /// Giải mã JWT để lấy roles. Hỗ trợ cả "role": [...] và ClaimTypes.Role (URI).
+        /// Giải mã JWT để lấy roles. Hỗ trợ cả "role" và ClaimTypes.Role (URI).
+        /// (Dựa trên code hiện có của bạn):contentReference[oaicite:2]{index=2}
         /// </summary>
         private string[] TryExtractRoles(string jwt)
         {
@@ -134,15 +159,14 @@ namespace BankClient
                 {
                     var root = doc.RootElement;
 
-                    // 1) "role": "Admin" hoặc ["Admin", "Customer"]
+                    // "role": "Admin" hoặc ["Admin","Customer"]
                     if (root.TryGetProperty("role", out var roleProp))
                     {
                         if (roleProp.ValueKind == JsonValueKind.String)
                         {
-                            string v = roleProp.GetString();
+                            var v = roleProp.GetString();
                             return v != null ? new[] { v } : Array.Empty<string>();
                         }
-
                         if (roleProp.ValueKind == JsonValueKind.Array)
                             return roleProp.EnumerateArray()
                                 .Where(x => x.ValueKind == JsonValueKind.String)
@@ -151,7 +175,7 @@ namespace BankClient
                                 .ToArray();
                     }
 
-                    // 2) ClaimTypes.Role (URI)
+                    // ClaimTypes.Role (URI)
                     var roleUri = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
                     if (root.TryGetProperty(roleUri, out var roleUriProp))
                     {
@@ -171,13 +195,16 @@ namespace BankClient
                     return Array.Empty<string>();
                 }
             }
-            catch
-            {
-                return Array.Empty<string>();
-            }
+            catch { return Array.Empty<string>(); }
         }
     }
 }
+
+
+
+
+
+
 
 
 

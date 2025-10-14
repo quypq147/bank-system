@@ -1,133 +1,114 @@
-﻿// ApiClient.cs
-using Newtonsoft.Json;
 using System;
-using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace BankClient.Api
+namespace BankClient
 {
+    /// <summary>
+    /// C# 7.3–compatible ApiClient:
+    /// - No nullable reference types.
+    /// - Provides SetToken/SetBearer/ClearToken.
+    /// - GetAsync<T>(url, bool requireAuth = true)
+    /// - PostAsync(url, body, bool requireAuth = true)
+    /// - PostAsync<TOut>(url, body, bool requireAuth = true)
+    /// Also keeps simple JSON helpers.
+    /// </summary>
     public static class ApiClient
     {
-        private static HttpClient _http;
-        public static string Token { get; private set; }
-        public static string BaseUrl { get; private set; }
-
-        static ApiClient()
+        private static readonly HttpClient _http = new HttpClient
         {
-            var cfg = ConfigurationManager.AppSettings["ApiBaseUrl"];
-            BaseUrl = string.IsNullOrWhiteSpace(cfg) ? "http://localhost:5014/" : cfg.Trim();
-            if (!BaseUrl.EndsWith("/")) BaseUrl += "/";
+            // TODO: chỉnh base URL đúng backend của bạn
+            BaseAddress = new Uri("https://localhost:5001/")
+        };
 
-            _http = NewHttp(BaseUrl);
-        }
+        public static string Token; // may be null at runtime (no nullable annotations in C# 7.3)
 
-        private static HttpClient NewHttp(string baseUrl)
+        public static void SetToken(string jwt)
         {
-            var h = new HttpClient { BaseAddress = new Uri(baseUrl) };
-            h.DefaultRequestHeaders.Accept.Clear();
-            h.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            return h;
-        }
-
-        public static void SetBaseUrl(string baseUrl)
-        {
-            if (string.IsNullOrWhiteSpace(baseUrl)) return;
-            if (!baseUrl.EndsWith("/")) baseUrl += "/";
-            BaseUrl = baseUrl;
-            _http?.Dispose();
-            _http = NewHttp(BaseUrl);
-
-            if (!string.IsNullOrWhiteSpace(Token))
-                _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-        }
-
-        public static void SetBearer(string token)
-        {
-            Token = token;
+            Token = jwt;
             _http.DefaultRequestHeaders.Authorization =
-                string.IsNullOrWhiteSpace(token) ? null : new AuthenticationHeaderValue("Bearer", token);
+                new AuthenticationHeaderValue("Bearer", jwt);
         }
 
-        private static string U(string url) => string.IsNullOrWhiteSpace(url) ? "/" : (url.StartsWith("/") ? url : "/" + url);
+        // Alias cho code cũ (BankApi gọi SetBearer)
+        public static void SetBearer(string jwt)
+        {
+            SetToken(jwt);
+        }
 
-        private static void EnsureAuthIfRequired(bool requireAuth)
+        public static void ClearToken()
+        {
+            Token = null;
+            _http.DefaultRequestHeaders.Authorization = null;
+        }
+
+        private static void EnsureAuth(bool requireAuth)
         {
             if (!requireAuth) return;
-            var auth = _http.DefaultRequestHeaders.Authorization;
-            if (auth == null || string.IsNullOrWhiteSpace(auth.Parameter))
-                throw new Exception("Chưa đăng nhập: Bearer token chưa được gắn vào header.");
+            if (string.IsNullOrWhiteSpace(Token))
+                throw new InvalidOperationException("Missing bearer token. Please login first.");
+            // Header được set trong SetToken/SetBearer
         }
 
-        private static Exception BuildHttpError(HttpResponseMessage res, string body, string method, string url)
-        {
-            var authHeader = _http.DefaultRequestHeaders.Authorization?.ToString() ?? "(null)";
-            res.Headers.TryGetValues("WWW-Authenticate", out var v);
-            var wwwAuth = v is null ? "(none)" : string.Join(" | ", v);
-            var reqUri = res.RequestMessage?.RequestUri?.ToString() ?? "(null)";
+        // ======= Overloads tương thích với BankApi.cs =======
 
-            var diag = new StringBuilder()
-                .AppendLine($"{(int)res.StatusCode} {res.ReasonPhrase}  [{method} {reqUri}]")
-                .AppendLine($"BaseAddress: {BaseUrl}")
-                .AppendLine($"Sent Authorization: {authHeader}")
-                .AppendLine($"WWW-Authenticate: {wwwAuth}")
-                .AppendLine("Body:")
-                .AppendLine(body)
-                .ToString();
-            return new Exception(diag);
+        public static async Task<TOut> GetAsync<TOut>(string url, bool requireAuth = true)
+        {
+            EnsureAuth(requireAuth);
+            var res = await _http.GetAsync(url);
+            res.EnsureSuccessStatusCode();
+            var obj = await res.Content.ReadFromJsonAsync<TOut>();
+            if (object.Equals(obj, default(TOut)))
+                throw new InvalidOperationException("Empty response body.");
+            return obj;
         }
 
-        public static async Task<T> GetAsync<T>(string url, bool requireAuth = false)
+        public static async Task PostAsync(string url, object body, bool requireAuth = true)
         {
-            EnsureAuthIfRequired(requireAuth);
-            using (var res = await _http.GetAsync(U(url)))
-    {
-        var body = await res.Content.ReadAsStringAsync();
-        if (!res.IsSuccessStatusCode) throw BuildHttpError(res, body, "GET", url);
+            EnsureAuth(requireAuth);
+            var res = await _http.PostAsJsonAsync(url, body);
+            res.EnsureSuccessStatusCode();
+        }
 
-        // SPECIAL CASE: khi T là string, trả raw body
-        if (typeof(T) == typeof(string))
-            return (T)(object)body;
+        public static async Task<TOut> PostAsync<TOut>(string url, object body, bool requireAuth = true)
+        {
+            EnsureAuth(requireAuth);
+            var res = await _http.PostAsJsonAsync(url, body);
+            res.EnsureSuccessStatusCode();
+            var obj = await res.Content.ReadFromJsonAsync<TOut>();
+            if (object.Equals(obj, default(TOut)))
+                throw new InvalidOperationException("Empty response body.");
+            return obj;
+        }
 
-        return JsonConvert.DeserializeObject<T>(body);
+        // ======= Helpers JSON tuỳ chọn =======
+        public static async Task<T> GetJsonAsync<T>(string url)
+        {
+            var res = await _http.GetAsync(url);
+            res.EnsureSuccessStatusCode();
+            var obj = await res.Content.ReadFromJsonAsync<T>();
+            if (object.Equals(obj, default(T)))
+                throw new InvalidOperationException("Empty response body.");
+            return obj;
+        }
+
+        public static async Task<HttpResponseMessage> PostJsonAsync<T>(string url, T body)
+        {
+            var res = await _http.PostAsJsonAsync(url, body);
+            res.EnsureSuccessStatusCode();
+            return res;
+        }
+
+        public static async Task<TOut> PostAndReadAsync<TIn, TOut>(string url, TIn body)
+        {
+            var res = await _http.PostAsJsonAsync(url, body);
+            res.EnsureSuccessStatusCode();
+            var obj = await res.Content.ReadFromJsonAsync<TOut>();
+            if (object.Equals(obj, default(TOut)))
+                throw new InvalidOperationException("Empty response body.");
+            return obj;
+        }
     }
 }
-
-public static async Task<T> PostAsync<T>(string url, object payload, bool requireAuth = false)
-{
-    EnsureAuthIfRequired(requireAuth);
-    var json = JsonConvert.SerializeObject(payload);
-    using (var content = new StringContent(json, Encoding.UTF8, "application/json"))
-    using (var res = await _http.PostAsync(U(url), content))
-    {
-        var body = await res.Content.ReadAsStringAsync();
-        if (!res.IsSuccessStatusCode) throw BuildHttpError(res, body, "POST", url);
-
-        // SPECIAL CASE: khi T là string, trả raw body
-        if (typeof(T) == typeof(string))
-            return (T)(object)body;
-
-        return JsonConvert.DeserializeObject<T>(body);
-    }
-}
-
-public static async Task PostAsync(string url, object payload, bool requireAuth = false)
-{
-    EnsureAuthIfRequired(requireAuth);
-    var json = JsonConvert.SerializeObject(payload);
-    using (var content = new StringContent(json, Encoding.UTF8, "application/json"))
-    using (var res = await _http.PostAsync(U(url), content))
-    {
-        var body = await res.Content.ReadAsStringAsync();
-        if (!res.IsSuccessStatusCode) throw BuildHttpError(res, body, "POST", url);
-    }
-}
-    }
-}
-
-
-
-
-

@@ -1,0 +1,7 @@
+E:\Project\repo\qlda\BankApp\obj\Debug\BankClient.csproj.AssemblyReference.cache
+E:\Project\repo\qlda\BankApp\obj\Debug\BankClient.UserForm.resources
+E:\Project\repo\qlda\BankApp\obj\Debug\BankClient.LoginForm.resources
+E:\Project\repo\qlda\BankApp\obj\Debug\BankClient.MainForm.resources
+E:\Project\repo\qlda\BankApp\obj\Debug\BankClient.Properties.Resources.resources
+E:\Project\repo\qlda\BankApp\obj\Debug\BankClient.csproj.GenerateResource.cache
+E:\Project\repo\qlda\BankApp\obj\Debug\BankClient.csproj.CoreCompileInputs.cache

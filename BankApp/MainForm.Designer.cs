@@ -16,9 +16,6 @@ namespace BankClient
         private void InitializeComponent()
         {
             this.tab = new System.Windows.Forms.TabControl();
-            this.tabAuth = new System.Windows.Forms.TabPage();
-            this.grpAuth = new System.Windows.Forms.GroupBox();
-            this.lblAuthStatus = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -112,8 +109,6 @@ namespace BankClient
             this.label9 = new System.Windows.Forms.Label();
 
             this.tab.SuspendLayout();
-            this.tabAuth.SuspendLayout();
-            this.grpAuth.SuspendLayout();
 
             this.tabCustomers.SuspendLayout();
             this.grpCreateLoginUser.SuspendLayout();
@@ -138,7 +133,7 @@ namespace BankClient
             // 
             // tab
             // 
-            this.tab.Controls.Add(this.tabAuth);
+            
             this.tab.Controls.Add(this.tabCustomers);
             this.tab.Controls.Add(this.tabAccounts);
             this.tab.Controls.Add(this.tabTransactions);
@@ -150,46 +145,7 @@ namespace BankClient
             this.tab.Size = new System.Drawing.Size(1000, 640);
             this.tab.TabIndex = 0;
 
-            // 
-            // tabAuth
-            // 
-            this.tabAuth.Controls.Add(this.grpAuth);
-            this.tabAuth.Location = new System.Drawing.Point(4, 25);
-            this.tabAuth.Name = "tabAuth";
-            this.tabAuth.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAuth.Size = new System.Drawing.Size(992, 611);
-            this.tabAuth.TabIndex = 0;
-            this.tabAuth.Text = "Auth";
-            this.tabAuth.UseVisualStyleBackColor = true;
-
-            // 
-            // grpAuth
-            // 
-            this.grpAuth.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                  | System.Windows.Forms.AnchorStyles.Right))));
-            this.grpAuth.Controls.Add(this.lblAuthStatus);
-            this.grpAuth.Controls.Add(this.btnLogin);
-            this.grpAuth.Controls.Add(this.txtPassword);
-            this.grpAuth.Controls.Add(this.label2);
-            this.grpAuth.Controls.Add(this.txtEmail);
-            this.grpAuth.Controls.Add(this.label1);
-            this.grpAuth.Location = new System.Drawing.Point(20, 20);
-            this.grpAuth.Name = "grpAuth";
-            this.grpAuth.Size = new System.Drawing.Size(950, 120);
-            this.grpAuth.TabIndex = 0;
-            this.grpAuth.TabStop = false;
-            this.grpAuth.Text = "Đăng nhập (Admin)";
-            // 
-            // lblAuthStatus
-            // 
-            this.lblAuthStatus.AutoSize = true;
-            this.lblAuthStatus.ForeColor = System.Drawing.Color.DimGray;
-            this.lblAuthStatus.Location = new System.Drawing.Point(22, 88);
-            this.lblAuthStatus.Name = "lblAuthStatus";
-            this.lblAuthStatus.Size = new System.Drawing.Size(100, 16);
-            this.lblAuthStatus.TabIndex = 5;
-            this.lblAuthStatus.Text = "Chưa đăng nhập";
-            // 
+            
             // btnLogin
             // 
             this.btnLogin.Location = new System.Drawing.Point(640, 40);
@@ -1010,9 +966,6 @@ namespace BankClient
             this.Text = "Bank Admin - MainForm";
 
             this.tab.ResumeLayout(false);
-            this.tabAuth.ResumeLayout(false);
-            this.grpAuth.ResumeLayout(false);
-            this.grpAuth.PerformLayout();
 
             this.tabCustomers.ResumeLayout(false);
             this.grpCreateLoginUser.ResumeLayout(false);
@@ -1028,6 +981,13 @@ namespace BankClient
             this.grpOpenAccount.PerformLayout();
             this.grpGetAccount.ResumeLayout(false);
             this.grpGetAccount.PerformLayout();
+
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.btnLogout.Text = "Đăng xuất";
+            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            
+            this.btnLogout.Size = new System.Drawing.Size(100, 28);
+            this.Controls.Add(this.btnLogout);
 
             this.tabTransactions.ResumeLayout(false);
             this.grpDeposit.ResumeLayout(false);
@@ -1047,14 +1007,11 @@ namespace BankClient
         #endregion
 
         private System.Windows.Forms.TabControl tab;
-        private System.Windows.Forms.TabPage tabAuth;
-        private System.Windows.Forms.GroupBox grpAuth;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Label lblAuthStatus;
 
         private System.Windows.Forms.TabPage tabCustomers;
         private System.Windows.Forms.GroupBox grpCreateCustomer;
@@ -1141,6 +1098,7 @@ namespace BankClient
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button btnLoadStatement;
         private System.Windows.Forms.DataGridView gridStatement;
+        private System.Windows.Forms.Button btnLogout;
     }
 }
 

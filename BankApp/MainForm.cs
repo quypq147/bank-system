@@ -14,11 +14,7 @@ namespace BankClient
         {
             InitializeComponent();
 
-            // ========== Wire events ==========
-            this.Load += MainForm_Load;
-
-            // Auth
-            btnLogin.Click += btnLogin_Click;
+          
 
             // Customers
             btnSearchCustomers.Click += btnSearchCustomers_Click;
@@ -40,42 +36,7 @@ namespace BankClient
             btnLoadStatement.Click += btnLoadStatement_Click;
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            // Gợi ý thông tin đăng nhập dev
-            txtEmail.Text = "admin@bank.local";
-            txtPassword.Text = "P@ssw0rd!";
-            lblAuthStatus.Text = "Chưa đăng nhập";
-
-            // Accounts tab: dùng AccountClass thay vì AccountType
-            cboAccountType.DataSource = Enum.GetValues(typeof(AccountClass));
-
-            // Statement tab: default 1 tháng gần nhất
-            dtFrom.Value = DateTime.Today.AddMonths(-1);
-            dtTo.Value = DateTime.Today;
-        }
-
-        // ========= AUTH =========
-        private async void btnLogin_Click(object sender, EventArgs e)
-        {
-            lblAuthStatus.Text = "Đang đăng nhập...";
-            btnLogin.Enabled = false;
-            try
-            {
-                var token = await BankApi.LoginAsync(txtEmail.Text.Trim(), txtPassword.Text);
-                lblAuthStatus.Text = "Đã đăng nhập (Admin)";
-                MessageBox.Show("Đăng nhập thành công!");
-            }
-            catch (Exception ex)
-            {
-                lblAuthStatus.Text = "Đăng nhập thất bại";
-                MessageBox.Show("Lỗi đăng nhập: " + ex.Message);
-            }
-            finally
-            {
-                btnLogin.Enabled = true;
-            }
-        }
+        
 
         // ========= CUSTOMERS =========
         private async void btnSearchCustomers_Click(object sender, EventArgs e)
