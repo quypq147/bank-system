@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "E:\\Project\\repo\\qlda\\BankApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{36C34694-F892-4609-B15E-69B1CB32A258}|BankClient.csproj|e:\\project\\repo\\qlda\\bankapp\\userform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{36C34694-F892-4609-B15E-69B1CB32A258}|BankClient.csproj|solutionrelative:userform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{36C34694-F892-4609-B15E-69B1CB32A258}|BankClient.csproj|e:\\project\\repo\\qlda\\bankapp\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{36C34694-F892-4609-B15E-69B1CB32A258}|BankClient.csproj|solutionrelative:loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{36C34694-F892-4609-B15E-69B1CB32A258}|BankClient.csproj|e:\\project\\repo\\qlda\\bankapp\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{36C34694-F892-4609-B15E-69B1CB32A258}|BankClient.csproj|solutionrelative:mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,26 +19,13 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UserForm.cs",
-              "DocumentMoniker": "E:\\Project\\repo\\qlda\\BankApp\\UserForm.cs",
-              "RelativeDocumentMoniker": "UserForm.cs",
-              "ToolTip": "E:\\Project\\repo\\qlda\\BankApp\\UserForm.cs",
-              "RelativeToolTip": "UserForm.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwCAAAABEAAAAAAAAAA==",
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "E:\\Project\\repo\\qlda\\BankApp\\MainForm.cs",
+              "RelativeDocumentMoniker": "MainForm.cs",
+              "ToolTip": "E:\\Project\\repo\\qlda\\BankApp\\MainForm.cs [Design]",
+              "RelativeToolTip": "MainForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T09:46:53.856Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "LoginForm.cs [Design]",
-              "DocumentMoniker": "E:\\Project\\repo\\qlda\\BankApp\\LoginForm.cs",
-              "RelativeDocumentMoniker": "LoginForm.cs",
-              "ToolTip": "E:\\Project\\repo\\qlda\\BankApp\\LoginForm.cs [Design]",
-              "RelativeToolTip": "LoginForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T09:26:30.851Z",
+              "WhenOpened": "2025-10-15T07:09:59.122Z",
               "EditorCaption": " [Design]"
             }
           ]

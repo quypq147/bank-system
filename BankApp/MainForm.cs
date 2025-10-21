@@ -34,9 +34,13 @@ namespace BankClient
 
             // Statement
             btnLoadStatement.Click += btnLoadStatement_Click;
+
+            // Logout
+            btnLogout.Click += btnLogout_Click;
+            
         }
 
-        
+
 
         // ========= CUSTOMERS =========
         private async void btnSearchCustomers_Click(object sender, EventArgs e)
@@ -45,6 +49,12 @@ namespace BankClient
             {
                 var list = await BankApi.SearchCustomersAsync(txtSearch.Text.Trim());
                 gridCustomers.DataSource = list;
+
+                // đảm bảo có cột bổ sung
+                EnsureCustomerAccountColumn();
+
+                // đổ dữ liệu vào cột "AccountID"
+                await FillAccountColumnAsync(list);
             }
             catch (Exception ex)
             {
@@ -52,6 +62,55 @@ namespace BankClient
             }
         }
 
+        private const string ColAccountId = "colAccountId";
+        private bool _accountColAdded = false;
+
+        private void EnsureCustomerAccountColumn()
+        {
+            if (_accountColAdded) return;
+            var col = new DataGridViewTextBoxColumn
+            {
+                Name = ColAccountId,
+                HeaderText = "AccountID",
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+            };
+            gridCustomers.Columns.Add(col);
+            _accountColAdded = true;
+        }
+
+        private async Task<string> GetFirstAccountNoOrNullAsync(string customerId)
+        {
+            try
+            {
+                var accs = await BankApi.GetAccountsOfCustomerAsync(customerId);
+                var a = accs?.FirstOrDefault();
+                // Nếu muốn GUID thay vì số tài khoản: return a?.Id.ToString();
+                return a?.AccountNo;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private async Task FillAccountColumnAsync(CustomerDto[] customers)
+        {
+            // Lấy trước kết quả song song
+            var tasks = customers.Select(async c => (c.Id, Val: await GetFirstAccountNoOrNullAsync(c.Id))).ToArray();
+            var pairs = await Task.WhenAll(tasks);
+            var map = pairs.ToDictionary(x => x.Id, x => x.Val);
+
+            // Gán theo từng dòng đang hiển thị (an toàn nếu người dùng sort cột)
+            foreach (DataGridViewRow row in gridCustomers.Rows)
+            {
+                if (row.DataBoundItem is CustomerDto c)
+                {
+                    map.TryGetValue(c.Id, out var val);
+                    row.Cells[ColAccountId].Value = string.IsNullOrWhiteSpace(val) ? "Chưa tạo tài khoản" : val;
+                }
+            }
+        }
         private async void btnCreateCustomer_Click(object sender, EventArgs e)
         {
             try
@@ -61,7 +120,7 @@ namespace BankClient
                     FullName = txtFullName.Text.Trim(),
                     Email = txtCusEmail.Text.Trim(),
                     Phone = txtPhone.Text.Trim(),
-                    Address = txtAddress.Text.Trim()
+                    Address = txtAddress.Text.Trim()    
                 };
 
                 if (string.IsNullOrWhiteSpace(dto.FullName) || string.IsNullOrWhiteSpace(dto.Email))
@@ -276,6 +335,20 @@ namespace BankClient
             {
                 MessageBox.Show("Lỗi tải sao kê: " + ex.Message);
             }
+        }
+        // ========= LOGOUT =========
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            ApiClient.ClearToken();
+            MessageBox.Show("Đăng xuất thành công!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close(); // quay về LoginForm (LoginForm đã xử lý trong FormClosed)
+        }
+
+        private void btnLogout_Click_1(object sender, EventArgs e)
+        {
+            ApiClient.ClearToken();
+            MessageBox.Show("Đăng xuất thành công!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close(); // quay về LoginForm (LoginForm đã xử lý trong FormClosed)
         }
     }
 }

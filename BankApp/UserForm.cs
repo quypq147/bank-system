@@ -26,6 +26,7 @@ namespace BankClient
             btnWithdraw.Click += btnWithdraw_Click;
             btnTransfer.Click += btnTransfer_Click;
             btnLoadStatement.Click += btnLoadStatement_Click;
+            
 
             this.Load += UserForm_Load;
         }
@@ -325,6 +326,14 @@ namespace BankClient
             {
                 MessageBox.Show("Lỗi tải sao kê: " + ex.Message);
             }
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            ApiClient.ClearToken();
+            MessageBox.Show("Đăng xuất thành công!", "Success",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
         }
     }
 

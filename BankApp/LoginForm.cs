@@ -97,6 +97,11 @@ namespace BankClient
                     {
                         txtPassword.Text = "";
                         lblStatus.Text = "Đã đăng xuất. Vui lòng đăng nhập lại.";
+                        MessageBox.Show(
+    "Đăng nhập thành công!",
+    "Success",
+    MessageBoxButtons.OK, MessageBoxIcon.Information
+);
                         this.Show();
                     }
                     else
@@ -105,10 +110,17 @@ namespace BankClient
                         this.Close();
                     }
                 };
+                this.Hide();
                 next.Show();
             }
             catch (Exception ex)
             {
+                string MostInner(Exception e)
+                {
+                    while (e.InnerException != null) e = e.InnerException;
+                    return e.Message;
+                }
+                var detail = MostInner(ex);
                 lblStatus.Text = "Đăng nhập thất bại";
                 var msg = ex.Message ?? "";
                 if (msg.Contains("401") || msg.IndexOf("Unauthorized", StringComparison.OrdinalIgnoreCase) >= 0)
@@ -120,8 +132,17 @@ namespace BankClient
                 }
                 else
                 {
-                    MessageBox.Show("Lỗi đăng nhập:\n" + ex.Message, "Login Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    MessageBox.Show("Loi đăng nhập API:\n\n" +
+        "Login Error\n\n" +
+        "Chi tiết: " + detail + "\n\n" +
+        "Gợi ý:\n" +
+        "• Kiểm tra API có đang chạy và đúng URL/port không.\n" +
+        "• Nếu dùng HTTPS, hãy trust dev cert: dotnet dev-certs https --trust\n" +
+        "• Nếu API chạy HTTP, chỉnh BaseAddress thành http://localhost:5000/",
+        "Login Error",
+        MessageBoxButtons.OK, MessageBoxIcon.Error
+    );
                 }
             }
             finally

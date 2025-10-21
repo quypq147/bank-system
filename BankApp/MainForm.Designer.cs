@@ -16,13 +16,8 @@ namespace BankClient
         private void InitializeComponent()
         {
             this.tab = new System.Windows.Forms.TabControl();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-
             this.tabCustomers = new System.Windows.Forms.TabPage();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.grpCreateLoginUser = new System.Windows.Forms.GroupBox();
             this.btnCreateLoginUser = new System.Windows.Forms.Button();
             this.txtLoginPassword = new System.Windows.Forms.TextBox();
@@ -31,7 +26,6 @@ namespace BankClient
             this.label29 = new System.Windows.Forms.Label();
             this.txtLoginCustomerId = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
-
             this.grpCreateCustomer = new System.Windows.Forms.GroupBox();
             this.txtCreatedCustomerId = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -44,14 +38,17 @@ namespace BankClient
             this.label5 = new System.Windows.Forms.Label();
             this.txtFullName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-
             this.grpSearchCustomers = new System.Windows.Forms.GroupBox();
             this.gridCustomers = new System.Windows.Forms.DataGridView();
             this.btnSearchCustomers = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-
             this.tabAccounts = new System.Windows.Forms.TabPage();
+            this.grpGetAccount = new System.Windows.Forms.GroupBox();
+            this.lblAccountInfo = new System.Windows.Forms.Label();
+            this.btnGetAccount = new System.Windows.Forms.Button();
+            this.txtGetAccountNo = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.grpOpenAccount = new System.Windows.Forms.GroupBox();
             this.txtOpenedAccountNo = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -62,31 +59,7 @@ namespace BankClient
             this.label13 = new System.Windows.Forms.Label();
             this.txtCustomerIdForAccount = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.grpGetAccount = new System.Windows.Forms.GroupBox();
-            this.lblAccountInfo = new System.Windows.Forms.Label();
-            this.btnGetAccount = new System.Windows.Forms.Button();
-            this.txtGetAccountNo = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-
             this.tabTransactions = new System.Windows.Forms.TabPage();
-            this.grpDeposit = new System.Windows.Forms.GroupBox();
-            this.txtDepNote = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.btnDeposit = new System.Windows.Forms.Button();
-            this.txtDepAmount = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtDepAccount = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-
-            this.grpWithdraw = new System.Windows.Forms.GroupBox();
-            this.txtWdrNote = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.btnWithdraw = new System.Windows.Forms.Button();
-            this.txtWdrAmount = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txtWdrAccount = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-
             this.grpTransfer = new System.Windows.Forms.GroupBox();
             this.txtTrNote = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
@@ -97,7 +70,22 @@ namespace BankClient
             this.label24 = new System.Windows.Forms.Label();
             this.txtTrFrom = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
-
+            this.grpWithdraw = new System.Windows.Forms.GroupBox();
+            this.txtWdrNote = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.btnWithdraw = new System.Windows.Forms.Button();
+            this.txtWdrAmount = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtWdrAccount = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.grpDeposit = new System.Windows.Forms.GroupBox();
+            this.txtDepNote = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.btnDeposit = new System.Windows.Forms.Button();
+            this.txtDepAmount = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtDepAccount = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.tabStatement = new System.Windows.Forms.TabPage();
             this.gridStatement = new System.Windows.Forms.DataGridView();
             this.btnLoadStatement = new System.Windows.Forms.Button();
@@ -107,33 +95,30 @@ namespace BankClient
             this.label10 = new System.Windows.Forms.Label();
             this.txtStmAccount = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-
+            this.btnLogin = new System.Windows.Forms.Button();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tab.SuspendLayout();
-
             this.tabCustomers.SuspendLayout();
             this.grpCreateLoginUser.SuspendLayout();
             this.grpCreateCustomer.SuspendLayout();
             this.grpSearchCustomers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCustomers)).BeginInit();
-
             this.tabAccounts.SuspendLayout();
-            this.grpOpenAccount.SuspendLayout();
             this.grpGetAccount.SuspendLayout();
-
+            this.grpOpenAccount.SuspendLayout();
             this.tabTransactions.SuspendLayout();
-            this.grpDeposit.SuspendLayout();
-            this.grpWithdraw.SuspendLayout();
             this.grpTransfer.SuspendLayout();
-
+            this.grpWithdraw.SuspendLayout();
+            this.grpDeposit.SuspendLayout();
             this.tabStatement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridStatement)).BeginInit();
-
             this.SuspendLayout();
-
             // 
             // tab
             // 
-            
             this.tab.Controls.Add(this.tabCustomers);
             this.tab.Controls.Add(this.tabAccounts);
             this.tab.Controls.Add(this.tabTransactions);
@@ -142,71 +127,37 @@ namespace BankClient
             this.tab.Location = new System.Drawing.Point(0, 0);
             this.tab.Name = "tab";
             this.tab.SelectedIndex = 0;
-            this.tab.Size = new System.Drawing.Size(1000, 640);
+            this.tab.Size = new System.Drawing.Size(1132, 648);
             this.tab.TabIndex = 0;
-
-            
-            // btnLogin
-            // 
-            this.btnLogin.Location = new System.Drawing.Point(640, 40);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(120, 28);
-            this.btnLogin.TabIndex = 4;
-            this.btnLogin.Text = "Đăng nhập";
-            this.btnLogin.UseVisualStyleBackColor = true;
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(420, 42);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '●';
-            this.txtPassword.Size = new System.Drawing.Size(200, 22);
-            this.txtPassword.TabIndex = 3;
-            // 
-            // label2 (Password)
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(340, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 16);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Password";
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(90, 42);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(220, 22);
-            this.txtEmail.TabIndex = 1;
-            // 
-            // label1 (Email)
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 45);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Email";
-
             // 
             // tabCustomers
             // 
+            this.tabCustomers.Controls.Add(this.btnLogout);
             this.tabCustomers.Controls.Add(this.grpCreateLoginUser);
             this.tabCustomers.Controls.Add(this.grpCreateCustomer);
             this.tabCustomers.Controls.Add(this.grpSearchCustomers);
             this.tabCustomers.Location = new System.Drawing.Point(4, 25);
             this.tabCustomers.Name = "tabCustomers";
             this.tabCustomers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCustomers.Size = new System.Drawing.Size(992, 611);
+            this.tabCustomers.Size = new System.Drawing.Size(1124, 619);
             this.tabCustomers.TabIndex = 1;
             this.tabCustomers.Text = "Customers";
             this.tabCustomers.UseVisualStyleBackColor = true;
-
             // 
-            // grpCreateLoginUser (NEW)
+            // btnLogout
             // 
-            this.grpCreateLoginUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLogout.Location = new System.Drawing.Point(982, 586);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(120, 30);
+            this.btnLogout.TabIndex = 4;
+            this.btnLogout.Text = "Đăng Xuất";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click_1);
+            // 
+            // grpCreateLoginUser
+            // 
+            this.grpCreateLoginUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpCreateLoginUser.Controls.Add(this.btnCreateLoginUser);
             this.grpCreateLoginUser.Controls.Add(this.txtLoginPassword);
             this.grpCreateLoginUser.Controls.Add(this.label30);
@@ -216,24 +167,24 @@ namespace BankClient
             this.grpCreateLoginUser.Controls.Add(this.label28);
             this.grpCreateLoginUser.Location = new System.Drawing.Point(20, 248);
             this.grpCreateLoginUser.Name = "grpCreateLoginUser";
-            this.grpCreateLoginUser.Size = new System.Drawing.Size(950, 100);
+            this.grpCreateLoginUser.Size = new System.Drawing.Size(1082, 100);
             this.grpCreateLoginUser.TabIndex = 2;
             this.grpCreateLoginUser.TabStop = false;
-            this.grpCreateLoginUser.Text = "Create Login User (for Customer)";
+            this.grpCreateLoginUser.Text = "Tạo tài khoản cho Người dùng";
             // 
             // btnCreateLoginUser
             // 
             this.btnCreateLoginUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreateLoginUser.Location = new System.Drawing.Point(850, 29);
+            this.btnCreateLoginUser.Location = new System.Drawing.Point(982, 29);
             this.btnCreateLoginUser.Name = "btnCreateLoginUser";
             this.btnCreateLoginUser.Size = new System.Drawing.Size(100, 28);
             this.btnCreateLoginUser.TabIndex = 6;
-            this.btnCreateLoginUser.Text = "Create";
+            this.btnCreateLoginUser.Text = "Tạo";
             this.btnCreateLoginUser.UseVisualStyleBackColor = true;
             // 
             // txtLoginPassword
             // 
-            this.txtLoginPassword.Location = new System.Drawing.Point(690, 31);
+            this.txtLoginPassword.Location = new System.Drawing.Point(782, 32);
             this.txtLoginPassword.Name = "txtLoginPassword";
             this.txtLoginPassword.PasswordChar = '●';
             this.txtLoginPassword.Size = new System.Drawing.Size(140, 22);
@@ -242,15 +193,15 @@ namespace BankClient
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(620, 34);
+            this.label30.Location = new System.Drawing.Point(690, 34);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(67, 16);
+            this.label30.Size = new System.Drawing.Size(61, 16);
             this.label30.TabIndex = 4;
-            this.label30.Text = "Password";
+            this.label30.Text = "Mật khẩu";
             // 
             // txtLoginEmail
             // 
-            this.txtLoginEmail.Location = new System.Drawing.Point(402, 31);
+            this.txtLoginEmail.Location = new System.Drawing.Point(484, 31);
             this.txtLoginEmail.Name = "txtLoginEmail";
             this.txtLoginEmail.Size = new System.Drawing.Size(200, 22);
             this.txtLoginEmail.TabIndex = 3;
@@ -258,7 +209,7 @@ namespace BankClient
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(354, 34);
+            this.label29.Location = new System.Drawing.Point(417, 34);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(41, 16);
             this.label29.TabIndex = 2;
@@ -266,9 +217,9 @@ namespace BankClient
             // 
             // txtLoginCustomerId
             // 
-            this.txtLoginCustomerId.Location = new System.Drawing.Point(110, 31);
+            this.txtLoginCustomerId.Location = new System.Drawing.Point(131, 32);
             this.txtLoginCustomerId.Name = "txtLoginCustomerId";
-            this.txtLoginCustomerId.Size = new System.Drawing.Size(220, 22);
+            this.txtLoginCustomerId.Size = new System.Drawing.Size(279, 22);
             this.txtLoginCustomerId.TabIndex = 1;
             // 
             // label28
@@ -276,15 +227,14 @@ namespace BankClient
             this.label28.AutoSize = true;
             this.label28.Location = new System.Drawing.Point(22, 34);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(75, 16);
+            this.label28.Size = new System.Drawing.Size(92, 16);
             this.label28.TabIndex = 0;
-            this.label28.Text = "CustomerId";
-
+            this.label28.Text = "ID Người dùng";
             // 
             // grpCreateCustomer
             // 
-            this.grpCreateCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpCreateCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpCreateCustomer.Controls.Add(this.txtCreatedCustomerId);
             this.grpCreateCustomer.Controls.Add(this.label8);
             this.grpCreateCustomer.Controls.Add(this.btnCreateCustomer);
@@ -298,78 +248,78 @@ namespace BankClient
             this.grpCreateCustomer.Controls.Add(this.label4);
             this.grpCreateCustomer.Location = new System.Drawing.Point(20, 16);
             this.grpCreateCustomer.Name = "grpCreateCustomer";
-            this.grpCreateCustomer.Size = new System.Drawing.Size(950, 212);
+            this.grpCreateCustomer.Size = new System.Drawing.Size(1082, 198);
             this.grpCreateCustomer.TabIndex = 0;
             this.grpCreateCustomer.TabStop = false;
-            this.grpCreateCustomer.Text = "Create Customer";
+            this.grpCreateCustomer.Text = "Tạo Người dùng";
             // 
             // txtCreatedCustomerId
             // 
-            this.txtCreatedCustomerId.Location = new System.Drawing.Point(110, 164);
+            this.txtCreatedCustomerId.Location = new System.Drawing.Point(131, 164);
             this.txtCreatedCustomerId.Name = "txtCreatedCustomerId";
             this.txtCreatedCustomerId.ReadOnly = true;
             this.txtCreatedCustomerId.Size = new System.Drawing.Size(220, 22);
             this.txtCreatedCustomerId.TabIndex = 10;
             // 
-            // label8 (Created CustomerId)
+            // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(22, 167);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 16);
+            this.label8.Size = new System.Drawing.Size(92, 16);
             this.label8.TabIndex = 9;
-            this.label8.Text = "CustomerId";
+            this.label8.Text = "ID Người dùng";
             // 
             // btnCreateCustomer
             // 
             this.btnCreateCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreateCustomer.Location = new System.Drawing.Point(850, 160);
+            this.btnCreateCustomer.Location = new System.Drawing.Point(693, 158);
             this.btnCreateCustomer.Name = "btnCreateCustomer";
-            this.btnCreateCustomer.Size = new System.Drawing.Size(100, 28);
+            this.btnCreateCustomer.Size = new System.Drawing.Size(138, 28);
             this.btnCreateCustomer.TabIndex = 8;
-            this.btnCreateCustomer.Text = "Create";
+            this.btnCreateCustomer.Text = "Tạo ID Người dùng";
             this.btnCreateCustomer.UseVisualStyleBackColor = true;
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(110, 124);
+            this.txtAddress.Location = new System.Drawing.Point(131, 121);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(330, 22);
+            this.txtAddress.Size = new System.Drawing.Size(379, 22);
             this.txtAddress.TabIndex = 7;
             // 
-            // label7 (Address)
+            // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(22, 127);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 16);
+            this.label7.Size = new System.Drawing.Size(47, 16);
             this.label7.TabIndex = 6;
-            this.label7.Text = "Address";
+            this.label7.Text = "Địa chỉ";
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(524, 84);
+            this.txtPhone.Location = new System.Drawing.Point(671, 65);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(210, 22);
             this.txtPhone.TabIndex = 5;
             // 
-            // label6 (Phone)
+            // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(470, 87);
+            this.label6.Location = new System.Drawing.Point(567, 68);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 16);
+            this.label6.Size = new System.Drawing.Size(85, 16);
             this.label6.TabIndex = 4;
-            this.label6.Text = "Phone";
+            this.label6.Text = "Số điện thoại";
             // 
             // txtCusEmail
             // 
-            this.txtCusEmail.Location = new System.Drawing.Point(110, 84);
+            this.txtCusEmail.Location = new System.Drawing.Point(131, 81);
             this.txtCusEmail.Name = "txtCusEmail";
-            this.txtCusEmail.Size = new System.Drawing.Size(330, 22);
+            this.txtCusEmail.Size = new System.Drawing.Size(379, 22);
             this.txtCusEmail.TabIndex = 3;
             // 
-            // label5 (Email)
+            // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(22, 87);
@@ -380,47 +330,46 @@ namespace BankClient
             // 
             // txtFullName
             // 
-            this.txtFullName.Location = new System.Drawing.Point(110, 40);
+            this.txtFullName.Location = new System.Drawing.Point(131, 37);
             this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(330, 22);
+            this.txtFullName.Size = new System.Drawing.Size(379, 22);
             this.txtFullName.TabIndex = 1;
             // 
-            // label4 (Full Name)
+            // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(22, 43);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 16);
+            this.label4.Size = new System.Drawing.Size(75, 16);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Full Name";
-
+            this.label4.Text = "Tên đầy đủ";
             // 
             // grpSearchCustomers
             // 
-            this.grpSearchCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpSearchCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpSearchCustomers.Controls.Add(this.gridCustomers);
             this.grpSearchCustomers.Controls.Add(this.btnSearchCustomers);
             this.grpSearchCustomers.Controls.Add(this.txtSearch);
             this.grpSearchCustomers.Controls.Add(this.label3);
             this.grpSearchCustomers.Location = new System.Drawing.Point(20, 364);
             this.grpSearchCustomers.Name = "grpSearchCustomers";
-            this.grpSearchCustomers.Size = new System.Drawing.Size(950, 220);
+            this.grpSearchCustomers.Size = new System.Drawing.Size(1082, 220);
             this.grpSearchCustomers.TabIndex = 3;
             this.grpSearchCustomers.TabStop = false;
             this.grpSearchCustomers.Text = "Search Customers";
             // 
             // gridCustomers
             // 
-            this.gridCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                | System.Windows.Forms.AnchorStyles.Left)
-                | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridCustomers.Location = new System.Drawing.Point(25, 68);
             this.gridCustomers.Name = "gridCustomers";
             this.gridCustomers.RowHeadersWidth = 51;
             this.gridCustomers.RowTemplate.Height = 24;
-            this.gridCustomers.Size = new System.Drawing.Size(900, 130);
+            this.gridCustomers.Size = new System.Drawing.Size(1032, 130);
             this.gridCustomers.TabIndex = 3;
             // 
             // btnSearchCustomers
@@ -429,7 +378,7 @@ namespace BankClient
             this.btnSearchCustomers.Name = "btnSearchCustomers";
             this.btnSearchCustomers.Size = new System.Drawing.Size(90, 28);
             this.btnSearchCustomers.TabIndex = 2;
-            this.btnSearchCustomers.Text = "Search";
+            this.btnSearchCustomers.Text = "Tìm";
             this.btnSearchCustomers.UseVisualStyleBackColor = true;
             // 
             // txtSearch
@@ -439,15 +388,14 @@ namespace BankClient
             this.txtSearch.Size = new System.Drawing.Size(320, 22);
             this.txtSearch.TabIndex = 1;
             // 
-            // label3 (Keyword)
+            // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(22, 35);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 16);
+            this.label3.Size = new System.Drawing.Size(59, 16);
             this.label3.TabIndex = 0;
             this.label3.Text = "Keyword";
-
             // 
             // tabAccounts
             // 
@@ -456,115 +404,15 @@ namespace BankClient
             this.tabAccounts.Location = new System.Drawing.Point(4, 25);
             this.tabAccounts.Name = "tabAccounts";
             this.tabAccounts.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAccounts.Size = new System.Drawing.Size(992, 611);
+            this.tabAccounts.Size = new System.Drawing.Size(1124, 619);
             this.tabAccounts.TabIndex = 2;
             this.tabAccounts.Text = "Accounts";
             this.tabAccounts.UseVisualStyleBackColor = true;
-
-            // 
-            // grpOpenAccount
-            // 
-            this.grpOpenAccount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpOpenAccount.Controls.Add(this.txtOpenedAccountNo);
-            this.grpOpenAccount.Controls.Add(this.label15);
-            this.grpOpenAccount.Controls.Add(this.btnOpenAccount);
-            this.grpOpenAccount.Controls.Add(this.txtCurrency);
-            this.grpOpenAccount.Controls.Add(this.label14);
-            this.grpOpenAccount.Controls.Add(this.cboAccountType);
-            this.grpOpenAccount.Controls.Add(this.label13);
-            this.grpOpenAccount.Controls.Add(this.txtCustomerIdForAccount);
-            this.grpOpenAccount.Controls.Add(this.label12);
-            this.grpOpenAccount.Location = new System.Drawing.Point(20, 16);
-            this.grpOpenAccount.Name = "grpOpenAccount";
-            this.grpOpenAccount.Size = new System.Drawing.Size(950, 140);
-            this.grpOpenAccount.TabIndex = 0;
-            this.grpOpenAccount.TabStop = false;
-            this.grpOpenAccount.Text = "Open Account (Admin)";
-            // 
-            // txtOpenedAccountNo
-            // 
-            this.txtOpenedAccountNo.Location = new System.Drawing.Point(110, 96);
-            this.txtOpenedAccountNo.Name = "txtOpenedAccountNo";
-            this.txtOpenedAccountNo.ReadOnly = true;
-            this.txtOpenedAccountNo.Size = new System.Drawing.Size(200, 22);
-            this.txtOpenedAccountNo.TabIndex = 8;
-            // 
-            // label15 (New AccountNo)
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(22, 99);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(74, 16);
-            this.label15.TabIndex = 7;
-            this.label15.Text = "AccountNo";
-            // 
-            // btnOpenAccount
-            // 
-            this.btnOpenAccount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOpenAccount.Location = new System.Drawing.Point(850, 40);
-            this.btnOpenAccount.Name = "btnOpenAccount";
-            this.btnOpenAccount.Size = new System.Drawing.Size(100, 28);
-            this.btnOpenAccount.TabIndex = 6;
-            this.btnOpenAccount.Text = "Open";
-            this.btnOpenAccount.UseVisualStyleBackColor = true;
-            // 
-            // txtCurrency
-            // 
-            this.txtCurrency.Location = new System.Drawing.Point(610, 42);
-            this.txtCurrency.Name = "txtCurrency";
-            this.txtCurrency.Size = new System.Drawing.Size(80, 22);
-            this.txtCurrency.TabIndex = 5;
-            this.txtCurrency.Text = "VND";
-            // 
-            // label14 (Currency)
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(550, 45);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(60, 16);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "Currency";
-            // 
-            // cboAccountType
-            // 
-            this.cboAccountType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboAccountType.FormattingEnabled = true;
-            this.cboAccountType.Location = new System.Drawing.Point(382, 42);
-            this.cboAccountType.Name = "cboAccountType";
-            this.cboAccountType.Size = new System.Drawing.Size(150, 24);
-            this.cboAccountType.TabIndex = 3;
-            // 
-            // label13 (Account Class)
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(290, 45);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(92, 16);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "Account Class";
-            // 
-            // txtCustomerIdForAccount
-            // 
-            this.txtCustomerIdForAccount.Location = new System.Drawing.Point(110, 42);
-            this.txtCustomerIdForAccount.Name = "txtCustomerIdForAccount";
-            this.txtCustomerIdForAccount.Size = new System.Drawing.Size(160, 22);
-            this.txtCustomerIdForAccount.TabIndex = 1;
-            // 
-            // label12 (CustomerId)
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(22, 45);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(75, 16);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "CustomerId";
-
             // 
             // grpGetAccount
             // 
-            this.grpGetAccount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpGetAccount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpGetAccount.Controls.Add(this.lblAccountInfo);
             this.grpGetAccount.Controls.Add(this.btnGetAccount);
             this.grpGetAccount.Controls.Add(this.txtGetAccountNo);
@@ -574,14 +422,14 @@ namespace BankClient
             this.grpGetAccount.Size = new System.Drawing.Size(950, 120);
             this.grpGetAccount.TabIndex = 1;
             this.grpGetAccount.TabStop = false;
-            this.grpGetAccount.Text = "Get Account";
+            this.grpGetAccount.Text = "Lấy thông tin tài khoản";
             // 
             // lblAccountInfo
             // 
             this.lblAccountInfo.AutoSize = true;
             this.lblAccountInfo.Location = new System.Drawing.Point(22, 78);
             this.lblAccountInfo.Name = "lblAccountInfo";
-            this.lblAccountInfo.Size = new System.Drawing.Size(215, 16);
+            this.lblAccountInfo.Size = new System.Drawing.Size(214, 16);
             this.lblAccountInfo.TabIndex = 3;
             this.lblAccountInfo.Text = "Số dư/Trạng thái sẽ hiển thị ở đây...";
             // 
@@ -601,15 +449,112 @@ namespace BankClient
             this.txtGetAccountNo.Size = new System.Drawing.Size(180, 22);
             this.txtGetAccountNo.TabIndex = 1;
             // 
-            // label11 (AccountNo)
+            // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(22, 45);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(74, 16);
+            this.label11.Size = new System.Drawing.Size(81, 16);
             this.label11.TabIndex = 0;
-            this.label11.Text = "AccountNo";
-
+            this.label11.Text = "Số tài khoản";
+            // 
+            // grpOpenAccount
+            // 
+            this.grpOpenAccount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpOpenAccount.Controls.Add(this.txtOpenedAccountNo);
+            this.grpOpenAccount.Controls.Add(this.label15);
+            this.grpOpenAccount.Controls.Add(this.btnOpenAccount);
+            this.grpOpenAccount.Controls.Add(this.txtCurrency);
+            this.grpOpenAccount.Controls.Add(this.label14);
+            this.grpOpenAccount.Controls.Add(this.cboAccountType);
+            this.grpOpenAccount.Controls.Add(this.label13);
+            this.grpOpenAccount.Controls.Add(this.txtCustomerIdForAccount);
+            this.grpOpenAccount.Controls.Add(this.label12);
+            this.grpOpenAccount.Location = new System.Drawing.Point(20, 16);
+            this.grpOpenAccount.Name = "grpOpenAccount";
+            this.grpOpenAccount.Size = new System.Drawing.Size(950, 140);
+            this.grpOpenAccount.TabIndex = 0;
+            this.grpOpenAccount.TabStop = false;
+            this.grpOpenAccount.Text = "Mở tài khoản ngân hàng";
+            // 
+            // txtOpenedAccountNo
+            // 
+            this.txtOpenedAccountNo.Location = new System.Drawing.Point(110, 96);
+            this.txtOpenedAccountNo.Name = "txtOpenedAccountNo";
+            this.txtOpenedAccountNo.ReadOnly = true;
+            this.txtOpenedAccountNo.Size = new System.Drawing.Size(200, 22);
+            this.txtOpenedAccountNo.TabIndex = 8;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(22, 99);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(81, 16);
+            this.label15.TabIndex = 7;
+            this.label15.Text = "Số tài khoản";
+            // 
+            // btnOpenAccount
+            // 
+            this.btnOpenAccount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpenAccount.Location = new System.Drawing.Point(850, 40);
+            this.btnOpenAccount.Name = "btnOpenAccount";
+            this.btnOpenAccount.Size = new System.Drawing.Size(100, 28);
+            this.btnOpenAccount.TabIndex = 6;
+            this.btnOpenAccount.Text = "Mở";
+            this.btnOpenAccount.UseVisualStyleBackColor = true;
+            // 
+            // txtCurrency
+            // 
+            this.txtCurrency.Location = new System.Drawing.Point(610, 42);
+            this.txtCurrency.Name = "txtCurrency";
+            this.txtCurrency.Size = new System.Drawing.Size(80, 22);
+            this.txtCurrency.TabIndex = 5;
+            this.txtCurrency.Text = "VND";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(550, 45);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(60, 16);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "Currency";
+            // 
+            // cboAccountType
+            // 
+            this.cboAccountType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboAccountType.FormattingEnabled = true;
+            this.cboAccountType.Location = new System.Drawing.Point(388, 42);
+            this.cboAccountType.Name = "cboAccountType";
+            this.cboAccountType.Size = new System.Drawing.Size(150, 24);
+            this.cboAccountType.TabIndex = 3;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(290, 45);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(92, 16);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Tài khoản loại";
+            // 
+            // txtCustomerIdForAccount
+            // 
+            this.txtCustomerIdForAccount.Location = new System.Drawing.Point(110, 42);
+            this.txtCustomerIdForAccount.Name = "txtCustomerIdForAccount";
+            this.txtCustomerIdForAccount.Size = new System.Drawing.Size(160, 22);
+            this.txtCustomerIdForAccount.TabIndex = 1;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(22, 45);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(92, 16);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "ID Người dùng";
             // 
             // tabTransactions
             // 
@@ -619,159 +564,10 @@ namespace BankClient
             this.tabTransactions.Location = new System.Drawing.Point(4, 25);
             this.tabTransactions.Name = "tabTransactions";
             this.tabTransactions.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTransactions.Size = new System.Drawing.Size(992, 611);
+            this.tabTransactions.Size = new System.Drawing.Size(1124, 619);
             this.tabTransactions.TabIndex = 3;
             this.tabTransactions.Text = "Transactions";
             this.tabTransactions.UseVisualStyleBackColor = true;
-
-            // 
-            // grpDeposit
-            // 
-            this.grpDeposit.Controls.Add(this.txtDepNote);
-            this.grpDeposit.Controls.Add(this.label18);
-            this.grpDeposit.Controls.Add(this.btnDeposit);
-            this.grpDeposit.Controls.Add(this.txtDepAmount);
-            this.grpDeposit.Controls.Add(this.label17);
-            this.grpDeposit.Controls.Add(this.txtDepAccount);
-            this.grpDeposit.Controls.Add(this.label16);
-            this.grpDeposit.Location = new System.Drawing.Point(20, 20);
-            this.grpDeposit.Name = "grpDeposit";
-            this.grpDeposit.Size = new System.Drawing.Size(450, 170);
-            this.grpDeposit.TabIndex = 0;
-            this.grpDeposit.TabStop = false;
-            this.grpDeposit.Text = "Nạp tiền";
-            // 
-            // txtDepNote
-            // 
-            this.txtDepNote.Location = new System.Drawing.Point(110, 96);
-            this.txtDepNote.Name = "txtDepNote";
-            this.txtDepNote.Size = new System.Drawing.Size(300, 22);
-            this.txtDepNote.TabIndex = 3;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(22, 99);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(39, 16);
-            this.label18.TabIndex = 6;
-            this.label18.Text = "Note";
-            // 
-            // btnDeposit
-            // 
-            this.btnDeposit.Location = new System.Drawing.Point(110, 128);
-            this.btnDeposit.Name = "btnDeposit";
-            this.btnDeposit.Size = new System.Drawing.Size(110, 28);
-            this.btnDeposit.TabIndex = 4;
-            this.btnDeposit.Text = "Nạp tiền";
-            this.btnDeposit.UseVisualStyleBackColor = true;
-            // 
-            // txtDepAmount
-            // 
-            this.txtDepAmount.Location = new System.Drawing.Point(110, 66);
-            this.txtDepAmount.Name = "txtDepAmount";
-            this.txtDepAmount.Size = new System.Drawing.Size(120, 22);
-            this.txtDepAmount.TabIndex = 2;
-            // 
-            // label17 (Amount)
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(22, 69);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(56, 16);
-            this.label17.TabIndex = 2;
-            this.label17.Text = "Amount";
-            // 
-            // txtDepAccount
-            // 
-            this.txtDepAccount.Location = new System.Drawing.Point(110, 36);
-            this.txtDepAccount.Name = "txtDepAccount";
-            this.txtDepAccount.Size = new System.Drawing.Size(180, 22);
-            this.txtDepAccount.TabIndex = 1;
-            // 
-            // label16 (AccountNo)
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(22, 39);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(74, 16);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "AccountNo";
-
-            // 
-            // grpWithdraw
-            // 
-            this.grpWithdraw.Controls.Add(this.txtWdrNote);
-            this.grpWithdraw.Controls.Add(this.label22);
-            this.grpWithdraw.Controls.Add(this.btnWithdraw);
-            this.grpWithdraw.Controls.Add(this.txtWdrAmount);
-            this.grpWithdraw.Controls.Add(this.label21);
-            this.grpWithdraw.Controls.Add(this.txtWdrAccount);
-            this.grpWithdraw.Controls.Add(this.label20);
-            this.grpWithdraw.Location = new System.Drawing.Point(20, 210);
-            this.grpWithdraw.Name = "grpWithdraw";
-            this.grpWithdraw.Size = new System.Drawing.Size(450, 170);
-            this.grpWithdraw.TabIndex = 1;
-            this.grpWithdraw.TabStop = false;
-            this.grpWithdraw.Text = "Rút tiền";
-            // 
-            // txtWdrNote
-            // 
-            this.txtWdrNote.Location = new System.Drawing.Point(110, 96);
-            this.txtWdrNote.Name = "txtWdrNote";
-            this.txtWdrNote.Size = new System.Drawing.Size(300, 22);
-            this.txtWdrNote.TabIndex = 3;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(22, 99);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(39, 16);
-            this.label22.TabIndex = 6;
-            this.label22.Text = "Note";
-            // 
-            // btnWithdraw
-            // 
-            this.btnWithdraw.Location = new System.Drawing.Point(110, 128);
-            this.btnWithdraw.Name = "btnWithdraw";
-            this.btnWithdraw.Size = new System.Drawing.Size(110, 28);
-            this.btnWithdraw.TabIndex = 4;
-            this.btnWithdraw.Text = "Rút tiền";
-            this.btnWithdraw.UseVisualStyleBackColor = true;
-            // 
-            // txtWdrAmount
-            // 
-            this.txtWdrAmount.Location = new System.Drawing.Point(110, 66);
-            this.txtWdrAmount.Name = "txtWdrAmount";
-            this.txtWdrAmount.Size = new System.Drawing.Size(120, 22);
-            this.txtWdrAmount.TabIndex = 2;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(22, 69);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(56, 16);
-            this.label21.TabIndex = 2;
-            this.label21.Text = "Amount";
-            // 
-            // txtWdrAccount
-            // 
-            this.txtWdrAccount.Location = new System.Drawing.Point(110, 36);
-            this.txtWdrAccount.Name = "txtWdrAccount";
-            this.txtWdrAccount.Size = new System.Drawing.Size(180, 22);
-            this.txtWdrAccount.TabIndex = 1;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(22, 39);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(74, 16);
-            this.label20.TabIndex = 0;
-            this.label20.Text = "AccountNo";
-
             // 
             // grpTransfer
             // 
@@ -803,9 +599,9 @@ namespace BankClient
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(22, 133);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(39, 16);
+            this.label26.Size = new System.Drawing.Size(51, 16);
             this.label26.TabIndex = 8;
-            this.label26.Text = "Note";
+            this.label26.Text = "Ghi chú";
             // 
             // btnTransfer
             // 
@@ -828,9 +624,9 @@ namespace BankClient
             this.label25.AutoSize = true;
             this.label25.Location = new System.Drawing.Point(22, 103);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(56, 16);
+            this.label25.Size = new System.Drawing.Size(94, 16);
             this.label25.TabIndex = 5;
-            this.label25.Text = "Amount";
+            this.label25.Text = "Số tiền chuyển";
             // 
             // txtTrTo
             // 
@@ -844,9 +640,9 @@ namespace BankClient
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(22, 73);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(94, 16);
+            this.label24.Size = new System.Drawing.Size(107, 16);
             this.label24.TabIndex = 3;
-            this.label24.Text = "ToAccountNo";
+            this.label24.Text = "Tài khoản hưởng";
             // 
             // txtTrFrom
             // 
@@ -862,8 +658,153 @@ namespace BankClient
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(113, 16);
             this.label23.TabIndex = 0;
-            this.label23.Text = "FromAccountNo";
-
+            this.label23.Text = "Tài khoản chuyển";
+            // 
+            // grpWithdraw
+            // 
+            this.grpWithdraw.Controls.Add(this.txtWdrNote);
+            this.grpWithdraw.Controls.Add(this.label22);
+            this.grpWithdraw.Controls.Add(this.btnWithdraw);
+            this.grpWithdraw.Controls.Add(this.txtWdrAmount);
+            this.grpWithdraw.Controls.Add(this.label21);
+            this.grpWithdraw.Controls.Add(this.txtWdrAccount);
+            this.grpWithdraw.Controls.Add(this.label20);
+            this.grpWithdraw.Location = new System.Drawing.Point(20, 210);
+            this.grpWithdraw.Name = "grpWithdraw";
+            this.grpWithdraw.Size = new System.Drawing.Size(450, 170);
+            this.grpWithdraw.TabIndex = 1;
+            this.grpWithdraw.TabStop = false;
+            this.grpWithdraw.Text = "Rút tiền";
+            // 
+            // txtWdrNote
+            // 
+            this.txtWdrNote.Location = new System.Drawing.Point(110, 96);
+            this.txtWdrNote.Name = "txtWdrNote";
+            this.txtWdrNote.Size = new System.Drawing.Size(300, 22);
+            this.txtWdrNote.TabIndex = 3;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(22, 99);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(51, 16);
+            this.label22.TabIndex = 6;
+            this.label22.Text = "Ghi chú";
+            // 
+            // btnWithdraw
+            // 
+            this.btnWithdraw.Location = new System.Drawing.Point(110, 128);
+            this.btnWithdraw.Name = "btnWithdraw";
+            this.btnWithdraw.Size = new System.Drawing.Size(110, 28);
+            this.btnWithdraw.TabIndex = 4;
+            this.btnWithdraw.Text = "Rút tiền";
+            this.btnWithdraw.UseVisualStyleBackColor = true;
+            // 
+            // txtWdrAmount
+            // 
+            this.txtWdrAmount.Location = new System.Drawing.Point(110, 66);
+            this.txtWdrAmount.Name = "txtWdrAmount";
+            this.txtWdrAmount.Size = new System.Drawing.Size(120, 22);
+            this.txtWdrAmount.TabIndex = 2;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(22, 69);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(65, 16);
+            this.label21.TabIndex = 2;
+            this.label21.Text = "Số tiền rút";
+            // 
+            // txtWdrAccount
+            // 
+            this.txtWdrAccount.Location = new System.Drawing.Point(110, 36);
+            this.txtWdrAccount.Name = "txtWdrAccount";
+            this.txtWdrAccount.Size = new System.Drawing.Size(180, 22);
+            this.txtWdrAccount.TabIndex = 1;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(22, 39);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(81, 16);
+            this.label20.TabIndex = 0;
+            this.label20.Text = "Số tài khoản";
+            // 
+            // grpDeposit
+            // 
+            this.grpDeposit.Controls.Add(this.txtDepNote);
+            this.grpDeposit.Controls.Add(this.label18);
+            this.grpDeposit.Controls.Add(this.btnDeposit);
+            this.grpDeposit.Controls.Add(this.txtDepAmount);
+            this.grpDeposit.Controls.Add(this.label17);
+            this.grpDeposit.Controls.Add(this.txtDepAccount);
+            this.grpDeposit.Controls.Add(this.label16);
+            this.grpDeposit.Location = new System.Drawing.Point(20, 20);
+            this.grpDeposit.Name = "grpDeposit";
+            this.grpDeposit.Size = new System.Drawing.Size(450, 170);
+            this.grpDeposit.TabIndex = 0;
+            this.grpDeposit.TabStop = false;
+            this.grpDeposit.Text = "Nạp tiền";
+            // 
+            // txtDepNote
+            // 
+            this.txtDepNote.Location = new System.Drawing.Point(110, 96);
+            this.txtDepNote.Name = "txtDepNote";
+            this.txtDepNote.Size = new System.Drawing.Size(300, 22);
+            this.txtDepNote.TabIndex = 3;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(22, 99);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(51, 16);
+            this.label18.TabIndex = 6;
+            this.label18.Text = "Ghi chú";
+            // 
+            // btnDeposit
+            // 
+            this.btnDeposit.Location = new System.Drawing.Point(110, 128);
+            this.btnDeposit.Name = "btnDeposit";
+            this.btnDeposit.Size = new System.Drawing.Size(110, 28);
+            this.btnDeposit.TabIndex = 4;
+            this.btnDeposit.Text = "Nạp tiền";
+            this.btnDeposit.UseVisualStyleBackColor = true;
+            // 
+            // txtDepAmount
+            // 
+            this.txtDepAmount.Location = new System.Drawing.Point(110, 66);
+            this.txtDepAmount.Name = "txtDepAmount";
+            this.txtDepAmount.Size = new System.Drawing.Size(120, 22);
+            this.txtDepAmount.TabIndex = 2;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(22, 69);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(74, 16);
+            this.label17.TabIndex = 2;
+            this.label17.Text = "Số tiền nạp";
+            // 
+            // txtDepAccount
+            // 
+            this.txtDepAccount.Location = new System.Drawing.Point(110, 36);
+            this.txtDepAccount.Name = "txtDepAccount";
+            this.txtDepAccount.Size = new System.Drawing.Size(180, 22);
+            this.txtDepAccount.TabIndex = 1;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(22, 39);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(81, 16);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Số tài khoản";
             // 
             // tabStatement
             // 
@@ -878,17 +819,16 @@ namespace BankClient
             this.tabStatement.Location = new System.Drawing.Point(4, 25);
             this.tabStatement.Name = "tabStatement";
             this.tabStatement.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStatement.Size = new System.Drawing.Size(992, 611);
+            this.tabStatement.Size = new System.Drawing.Size(1124, 619);
             this.tabStatement.TabIndex = 4;
             this.tabStatement.Text = "Statement";
             this.tabStatement.UseVisualStyleBackColor = true;
-
             // 
             // gridStatement
             // 
-            this.gridStatement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                | System.Windows.Forms.AnchorStyles.Left)
-                | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridStatement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridStatement.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridStatement.Location = new System.Drawing.Point(25, 88);
             this.gridStatement.Name = "gridStatement";
@@ -913,12 +853,12 @@ namespace BankClient
             this.dtTo.Size = new System.Drawing.Size(220, 22);
             this.dtTo.TabIndex = 5;
             // 
-            // label19 (Tới)
+            // label19
             // 
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(625, 34);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(24, 16);
+            this.label19.Size = new System.Drawing.Size(27, 16);
             this.label19.TabIndex = 4;
             this.label19.Text = "Tới";
             // 
@@ -929,7 +869,7 @@ namespace BankClient
             this.dtFrom.Size = new System.Drawing.Size(220, 22);
             this.dtFrom.TabIndex = 3;
             // 
-            // label10 (Từ)
+            // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(362, 34);
@@ -945,28 +885,67 @@ namespace BankClient
             this.txtStmAccount.Size = new System.Drawing.Size(230, 22);
             this.txtStmAccount.TabIndex = 1;
             // 
-            // label9 (AccountNo)
+            // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(22, 34);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(74, 16);
+            this.label9.Size = new System.Drawing.Size(81, 16);
             this.label9.TabIndex = 0;
-            this.label9.Text = "AccountNo";
-
+            this.label9.Text = "Số tài khoản";
+            // 
+            // btnLogin
+            // 
+            this.btnLogin.Location = new System.Drawing.Point(640, 40);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(120, 28);
+            this.btnLogin.TabIndex = 4;
+            this.btnLogin.Text = "Đăng nhập";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(420, 42);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '●';
+            this.txtPassword.Size = new System.Drawing.Size(200, 22);
+            this.txtPassword.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(340, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 16);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Password";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(90, 42);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(220, 22);
+            this.txtEmail.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(22, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Email";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 640);
+            this.ClientSize = new System.Drawing.Size(1132, 648);
             this.Controls.Add(this.tab);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bank Admin - MainForm";
-
             this.tab.ResumeLayout(false);
-
             this.tabCustomers.ResumeLayout(false);
             this.grpCreateLoginUser.ResumeLayout(false);
             this.grpCreateLoginUser.PerformLayout();
@@ -975,33 +954,23 @@ namespace BankClient
             this.grpSearchCustomers.ResumeLayout(false);
             this.grpSearchCustomers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCustomers)).EndInit();
-
             this.tabAccounts.ResumeLayout(false);
-            this.grpOpenAccount.ResumeLayout(false);
-            this.grpOpenAccount.PerformLayout();
             this.grpGetAccount.ResumeLayout(false);
             this.grpGetAccount.PerformLayout();
-
-            this.btnLogout = new System.Windows.Forms.Button();
-            this.btnLogout.Text = "Đăng xuất";
-            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            
-            this.btnLogout.Size = new System.Drawing.Size(100, 28);
-            this.Controls.Add(this.btnLogout);
-
+            this.grpOpenAccount.ResumeLayout(false);
+            this.grpOpenAccount.PerformLayout();
             this.tabTransactions.ResumeLayout(false);
-            this.grpDeposit.ResumeLayout(false);
-            this.grpDeposit.PerformLayout();
-            this.grpWithdraw.ResumeLayout(false);
-            this.grpWithdraw.PerformLayout();
             this.grpTransfer.ResumeLayout(false);
             this.grpTransfer.PerformLayout();
-
+            this.grpWithdraw.ResumeLayout(false);
+            this.grpWithdraw.PerformLayout();
+            this.grpDeposit.ResumeLayout(false);
+            this.grpDeposit.PerformLayout();
             this.tabStatement.ResumeLayout(false);
             this.tabStatement.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridStatement)).EndInit();
-
             this.ResumeLayout(false);
+
         }
 
         #endregion

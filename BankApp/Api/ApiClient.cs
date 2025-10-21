@@ -20,7 +20,7 @@ namespace BankClient
         private static readonly HttpClient _http = new HttpClient
         {
             // TODO: chỉnh base URL đúng backend của bạn
-            BaseAddress = new Uri("https://localhost:5001/")
+            BaseAddress = new Uri("http://localhost:5014/")
         };
 
         public static string Token; // may be null at runtime (no nullable annotations in C# 7.3)

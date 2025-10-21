@@ -31,7 +31,6 @@ namespace BankClient
             this.lblAccNoValue = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblAccountInfo = new System.Windows.Forms.Label();
-
             this.tabCash = new System.Windows.Forms.TabPage();
             this.grpDeposit = new System.Windows.Forms.GroupBox();
             this.txtDepNote = new System.Windows.Forms.TextBox();
@@ -39,14 +38,12 @@ namespace BankClient
             this.btnDeposit = new System.Windows.Forms.Button();
             this.txtDepAmount = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-
             this.grpWithdraw = new System.Windows.Forms.GroupBox();
             this.txtWdrNote = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnWithdraw = new System.Windows.Forms.Button();
             this.txtWdrAmount = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-
             this.grpTransfer = new System.Windows.Forms.GroupBox();
             this.txtTrNote = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -55,7 +52,6 @@ namespace BankClient
             this.label14 = new System.Windows.Forms.Label();
             this.txtTrTo = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-
             this.tabStatement = new System.Windows.Forms.TabPage();
             this.btnLoadStatement = new System.Windows.Forms.Button();
             this.gridStatement = new System.Windows.Forms.DataGridView();
@@ -63,21 +59,17 @@ namespace BankClient
             this.label17 = new System.Windows.Forms.Label();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label16 = new System.Windows.Forms.Label();
-
+            this.btnLogout = new System.Windows.Forms.Button();
             this.tab.SuspendLayout();
             this.tabAccount.SuspendLayout();
             this.grpMyAccount.SuspendLayout();
-
             this.tabCash.SuspendLayout();
             this.grpDeposit.SuspendLayout();
             this.grpWithdraw.SuspendLayout();
             this.grpTransfer.SuspendLayout();
-
             this.tabStatement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridStatement)).BeginInit();
-
             this.SuspendLayout();
-
             // 
             // tab
             // 
@@ -90,10 +82,10 @@ namespace BankClient
             this.tab.SelectedIndex = 0;
             this.tab.Size = new System.Drawing.Size(860, 560);
             this.tab.TabIndex = 0;
-
             // 
             // tabAccount
             // 
+            this.tabAccount.Controls.Add(this.btnLogout);
             this.tabAccount.Controls.Add(this.grpMyAccount);
             this.tabAccount.Controls.Add(this.lblAccountInfo);
             this.tabAccount.Location = new System.Drawing.Point(4, 25);
@@ -103,11 +95,10 @@ namespace BankClient
             this.tabAccount.TabIndex = 0;
             this.tabAccount.Text = "Tài khoản của tôi";
             this.tabAccount.UseVisualStyleBackColor = true;
-
             // 
             // grpMyAccount
             // 
-            this.grpMyAccount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.grpMyAccount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpMyAccount.Controls.Add(this.lblOpenedAtValue);
             this.grpMyAccount.Controls.Add(this.label7);
@@ -128,89 +119,122 @@ namespace BankClient
             this.grpMyAccount.TabStop = false;
             this.grpMyAccount.Text = "Thông tin tài khoản";
             // 
-            // label2 + lblAccNoValue
+            // lblOpenedAtValue
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 16);
-            this.label2.Text = "AccountNo";
-            this.lblAccNoValue.AutoSize = true;
-            this.lblAccNoValue.Location = new System.Drawing.Point(120, 34);
-            this.lblAccNoValue.Name = "lblAccNoValue";
-            this.lblAccNoValue.Size = new System.Drawing.Size(12, 16);
-            this.lblAccNoValue.Text = "-";
-
-            // label3 + lblAccClassValue
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 66);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 16);
-            this.label3.Text = "Account Class";
-            this.lblAccClassValue.AutoSize = true;
-            this.lblAccClassValue.Location = new System.Drawing.Point(120, 66);
-            this.lblAccClassValue.Name = "lblAccClassValue";
-            this.lblAccClassValue.Size = new System.Drawing.Size(12, 16);
-            this.lblAccClassValue.Text = "-";
-
-            // label4 + lblCurrencyValue
+            this.lblOpenedAtValue.AutoSize = true;
+            this.lblOpenedAtValue.Location = new System.Drawing.Point(520, 98);
+            this.lblOpenedAtValue.Name = "lblOpenedAtValue";
+            this.lblOpenedAtValue.Size = new System.Drawing.Size(11, 16);
+            this.lblOpenedAtValue.TabIndex = 0;
+            this.lblOpenedAtValue.Text = "-";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(420, 98);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(55, 16);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Mở vào ";
+            // 
+            // lblStatusValue
+            // 
+            this.lblStatusValue.AutoSize = true;
+            this.lblStatusValue.Location = new System.Drawing.Point(520, 66);
+            this.lblStatusValue.Name = "lblStatusValue";
+            this.lblStatusValue.Size = new System.Drawing.Size(11, 16);
+            this.lblStatusValue.TabIndex = 2;
+            this.lblStatusValue.Text = "-";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(420, 66);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(67, 16);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Trạng thái";
+            // 
+            // lblBalanceValue
+            // 
+            this.lblBalanceValue.AutoSize = true;
+            this.lblBalanceValue.Location = new System.Drawing.Point(520, 34);
+            this.lblBalanceValue.Name = "lblBalanceValue";
+            this.lblBalanceValue.Size = new System.Drawing.Size(11, 16);
+            this.lblBalanceValue.TabIndex = 4;
+            this.lblBalanceValue.Text = "-";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(420, 34);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 16);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Số dư";
+            // 
+            // lblCurrencyValue
+            // 
+            this.lblCurrencyValue.AutoSize = true;
+            this.lblCurrencyValue.Location = new System.Drawing.Point(120, 98);
+            this.lblCurrencyValue.Name = "lblCurrencyValue";
+            this.lblCurrencyValue.Size = new System.Drawing.Size(11, 16);
+            this.lblCurrencyValue.TabIndex = 6;
+            this.lblCurrencyValue.Text = "-";
+            // 
+            // label4
+            // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(20, 98);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 16);
+            this.label4.TabIndex = 7;
             this.label4.Text = "Currency";
-            this.lblCurrencyValue.AutoSize = true;
-            this.lblCurrencyValue.Location = new System.Drawing.Point(120, 98);
-            this.lblCurrencyValue.Name = "lblCurrencyValue";
-            this.lblCurrencyValue.Size = new System.Drawing.Size(12, 16);
-            this.lblCurrencyValue.Text = "-";
-
-            // label5 + lblBalanceValue
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(420, 34);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 16);
-            this.label5.Text = "Balance";
-            this.lblBalanceValue.AutoSize = true;
-            this.lblBalanceValue.Location = new System.Drawing.Point(520, 34);
-            this.lblBalanceValue.Name = "lblBalanceValue";
-            this.lblBalanceValue.Size = new System.Drawing.Size(12, 16);
-            this.lblBalanceValue.Text = "-";
-
-            // label6 + lblStatusValue
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(420, 66);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 16);
-            this.label6.Text = "Status";
-            this.lblStatusValue.AutoSize = true;
-            this.lblStatusValue.Location = new System.Drawing.Point(520, 66);
-            this.lblStatusValue.Name = "lblStatusValue";
-            this.lblStatusValue.Size = new System.Drawing.Size(12, 16);
-            this.lblStatusValue.Text = "-";
-
-            // label7 + lblOpenedAtValue
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(420, 98);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(70, 16);
-            this.label7.Text = "OpenedAt";
-            this.lblOpenedAtValue.AutoSize = true;
-            this.lblOpenedAtValue.Location = new System.Drawing.Point(520, 98);
-            this.lblOpenedAtValue.Name = "lblOpenedAtValue";
-            this.lblOpenedAtValue.Size = new System.Drawing.Size(12, 16);
-            this.lblOpenedAtValue.Text = "-";
-
             // 
-            // lblAccountInfo (summary line)
+            // lblAccClassValue
+            // 
+            this.lblAccClassValue.AutoSize = true;
+            this.lblAccClassValue.Location = new System.Drawing.Point(120, 66);
+            this.lblAccClassValue.Name = "lblAccClassValue";
+            this.lblAccClassValue.Size = new System.Drawing.Size(11, 16);
+            this.lblAccClassValue.TabIndex = 8;
+            this.lblAccClassValue.Text = "-";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(20, 66);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(90, 16);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Loại tài khoản";
+            // 
+            // lblAccNoValue
+            // 
+            this.lblAccNoValue.AutoSize = true;
+            this.lblAccNoValue.Location = new System.Drawing.Point(120, 34);
+            this.lblAccNoValue.Name = "lblAccNoValue";
+            this.lblAccNoValue.Size = new System.Drawing.Size(11, 16);
+            this.lblAccNoValue.TabIndex = 10;
+            this.lblAccNoValue.Text = "-";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 34);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 16);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Số tài khoản";
+            // 
+            // lblAccountInfo
             // 
             this.lblAccountInfo.AutoSize = true;
             this.lblAccountInfo.Location = new System.Drawing.Point(28, 24);
             this.lblAccountInfo.Name = "lblAccountInfo";
-            this.lblAccountInfo.Size = new System.Drawing.Size(268, 16);
+            this.lblAccountInfo.Size = new System.Drawing.Size(293, 16);
             this.lblAccountInfo.TabIndex = 3;
             this.lblAccountInfo.Text = "Thông tin tài khoản sẽ hiển thị sau khi đăng nhập";
-
             // 
             // tabCash
             // 
@@ -224,7 +248,6 @@ namespace BankClient
             this.tabCash.TabIndex = 1;
             this.tabCash.Text = "Giao dịch";
             this.tabCash.UseVisualStyleBackColor = true;
-
             // 
             // grpDeposit
             // 
@@ -252,9 +275,9 @@ namespace BankClient
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(18, 73);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(39, 16);
+            this.label8.Size = new System.Drawing.Size(51, 16);
             this.label8.TabIndex = 5;
-            this.label8.Text = "Note";
+            this.label8.Text = "Ghi chú";
             // 
             // btnDeposit
             // 
@@ -272,15 +295,14 @@ namespace BankClient
             this.txtDepAmount.Size = new System.Drawing.Size(120, 22);
             this.txtDepAmount.TabIndex = 1;
             // 
-            // label9 (Amount)
+            // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(18, 41);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(56, 16);
+            this.label9.Size = new System.Drawing.Size(48, 16);
             this.label9.TabIndex = 2;
-            this.label9.Text = "Amount";
-
+            this.label9.Text = "Số tiền";
             // 
             // grpWithdraw
             // 
@@ -308,9 +330,9 @@ namespace BankClient
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(18, 73);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(39, 16);
+            this.label10.Size = new System.Drawing.Size(51, 16);
             this.label10.TabIndex = 5;
-            this.label10.Text = "Note";
+            this.label10.Text = "Ghi chú";
             // 
             // btnWithdraw
             // 
@@ -328,15 +350,14 @@ namespace BankClient
             this.txtWdrAmount.Size = new System.Drawing.Size(120, 22);
             this.txtWdrAmount.TabIndex = 1;
             // 
-            // label11 (Amount)
+            // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(18, 41);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(56, 16);
+            this.label11.Size = new System.Drawing.Size(48, 16);
             this.label11.TabIndex = 2;
-            this.label11.Text = "Amount";
-
+            this.label11.Text = "Số tiền";
             // 
             // grpTransfer
             // 
@@ -366,9 +387,9 @@ namespace BankClient
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(18, 113);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(39, 16);
+            this.label15.Size = new System.Drawing.Size(51, 16);
             this.label15.TabIndex = 8;
-            this.label15.Text = "Note";
+            this.label15.Text = "Ghi chú";
             // 
             // btnTransfer
             // 
@@ -391,9 +412,9 @@ namespace BankClient
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(18, 81);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(56, 16);
+            this.label14.Size = new System.Drawing.Size(94, 16);
             this.label14.TabIndex = 5;
-            this.label14.Text = "Amount";
+            this.label14.Text = "Số tiền chuyển";
             // 
             // txtTrTo
             // 
@@ -407,10 +428,9 @@ namespace BankClient
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(18, 49);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(94, 16);
+            this.label13.Size = new System.Drawing.Size(107, 16);
             this.label13.TabIndex = 3;
-            this.label13.Text = "ToAccountNo";
-
+            this.label13.Text = "Tài khoản hưởng";
             // 
             // tabStatement
             // 
@@ -427,7 +447,6 @@ namespace BankClient
             this.tabStatement.TabIndex = 2;
             this.tabStatement.Text = "Sao kê";
             this.tabStatement.UseVisualStyleBackColor = true;
-
             // 
             // btnLoadStatement
             // 
@@ -440,8 +459,8 @@ namespace BankClient
             // 
             // gridStatement
             // 
-            this.gridStatement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.gridStatement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridStatement.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridStatement.Location = new System.Drawing.Point(23, 70);
@@ -463,7 +482,7 @@ namespace BankClient
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(390, 31);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(24, 16);
+            this.label17.Size = new System.Drawing.Size(27, 16);
             this.label17.TabIndex = 9;
             this.label17.Text = "Tới";
             // 
@@ -482,7 +501,16 @@ namespace BankClient
             this.label16.Size = new System.Drawing.Size(23, 16);
             this.label16.TabIndex = 7;
             this.label16.Text = "Từ";
-
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Location = new System.Drawing.Point(339, 242);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(128, 31);
+            this.btnLogout.TabIndex = 5;
+            this.btnLogout.Text = "Đăng Xuất";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // UserForm
             // 
@@ -493,13 +521,11 @@ namespace BankClient
             this.Name = "UserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bank Client - Customer";
-
             this.tab.ResumeLayout(false);
             this.tabAccount.ResumeLayout(false);
             this.tabAccount.PerformLayout();
             this.grpMyAccount.ResumeLayout(false);
             this.grpMyAccount.PerformLayout();
-
             this.tabCash.ResumeLayout(false);
             this.grpDeposit.ResumeLayout(false);
             this.grpDeposit.PerformLayout();
@@ -507,12 +533,11 @@ namespace BankClient
             this.grpWithdraw.PerformLayout();
             this.grpTransfer.ResumeLayout(false);
             this.grpTransfer.PerformLayout();
-
             this.tabStatement.ResumeLayout(false);
             this.tabStatement.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridStatement)).EndInit();
-
             this.ResumeLayout(false);
+
         }
 
         #endregion
@@ -567,6 +592,7 @@ namespace BankClient
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button btnLoadStatement;
         private System.Windows.Forms.DataGridView gridStatement;
+        private System.Windows.Forms.Button btnLogout;
     }
 }
 

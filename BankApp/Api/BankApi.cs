@@ -1,4 +1,5 @@
-﻿// BankApi.cs
+﻿// BankApi.cs  — FIX: đọc token từ JsonElement thay vì dynamic (C# 7.3 compatible)
+using System.Text.Json;
 using System.Threading.Tasks;
 using BankClient.Models;
 
@@ -9,21 +10,23 @@ namespace BankClient.Api
         // LOGIN: không requireAuth; đọc token theo nhiều key; gắn Bearer ngay sau login
         public static async Task<string> LoginAsync(string email, string password)
         {
-            var obj = await ApiClient.PostAsync<dynamic>(
+            // Nhận về JsonElement thay vì dynamic
+            var obj = await ApiClient.PostAsync<JsonElement>(
                 "api/auth/login",
                 new LoginDto { Email = email, Password = password },
                 requireAuth: false
             );
 
-            string tok = null;
-            try
-            {
-                tok = (string)(
-                      (obj.token ?? obj.Token
-                    ?? obj.access_token ?? obj.accessToken
-                    ?? obj.jwt));
-            }
-            catch { /* ignore */ }
+            // Thử các key thường gặp: token / Token / access_token / accessToken / jwt
+            string tok = TryGetString(obj, "token")
+                      ?? TryGetString(obj, "Token")
+                      ?? TryGetString(obj, "access_token")
+                      ?? TryGetString(obj, "accessToken")
+                      ?? TryGetString(obj, "jwt");
+
+            // Nếu backend trả về plain-string (không phải object), cũng chấp nhận
+            if (string.IsNullOrWhiteSpace(tok) && obj.ValueKind == JsonValueKind.String)
+                tok = obj.GetString();
 
             if (string.IsNullOrWhiteSpace(tok))
                 throw new System.Exception("Login thành công nhưng không nhận được token từ server.");
@@ -32,39 +35,73 @@ namespace BankClient.Api
             return tok;
         }
 
+        private static string TryGetString(JsonElement root, string name)
+        {
+            if (root.ValueKind == JsonValueKind.Object)
+            {
+                JsonElement v;
+                if (root.TryGetProperty(name, out v) && v.ValueKind == JsonValueKind.String)
+                    return v.GetString();
+            }
+            return null;
+        }
+
         // Test token sau login (yêu cầu Bearer)
-        public static Task<string> MeAsync() =>
-            ApiClient.GetAsync<string>("api/auth/me", requireAuth: true);
+        public static Task<string> MeAsync()
+        {
+            return ApiClient.GetAsync<string>("api/auth/me", requireAuth: true);
+        }
 
         // ===== CUSTOMERS (Admin-only) =====
-        public static Task<CustomerDto> CreateCustomerAsync(CustomerCreateDto dto) =>
-            ApiClient.PostAsync<CustomerDto>("api/customers", dto, requireAuth: true);
+        public static Task<CustomerDto> CreateCustomerAsync(CustomerCreateDto dto)
+        {
+            return ApiClient.PostAsync<CustomerDto>("api/customers", dto, requireAuth: true);
+        }
 
-        public static Task<CustomerDto[]> SearchCustomersAsync(string q) =>
-    ApiClient.GetAsync<CustomerDto[]>($"api/customers?q={System.Uri.EscapeDataString(q ?? "")}", requireAuth: true);
+        public static Task<CustomerDto[]> SearchCustomersAsync(string q)
+        {
+            var query = System.Uri.EscapeDataString(q ?? "");
+            return ApiClient.GetAsync<CustomerDto[]>($"api/customers?q={query}", requireAuth: true);
+        }
 
         // ===== ACCOUNTS =====
-        public static Task<AccountDto> OpenAccountAsync(AccountOpenDto dto) =>
-            ApiClient.PostAsync<AccountDto>("api/accounts/open", dto, requireAuth: true);
+        public static Task<AccountDto[]> GetAccountsOfCustomerAsync(string customerId) =>
+        ApiClient.GetAsync<AccountDto[]>($"api/customers/{customerId}/accounts", requireAuth: true);
 
-        public static Task<AccountDto> GetAccountAsync(string accountNo) =>
-            ApiClient.GetAsync<AccountDto>($"api/accounts/{accountNo}", requireAuth: true);
+        public static Task<AccountDto> OpenAccountAsync(AccountOpenDto dto)
+        {
+            return ApiClient.PostAsync<AccountDto>("api/accounts/open", dto, requireAuth: true);
+        }
+
+        public static Task<AccountDto> GetAccountAsync(string accountNo)
+        {
+            return ApiClient.GetAsync<AccountDto>($"api/accounts/{accountNo}", requireAuth: true);
+        }
 
         // ===== TRANSACTIONS =====
-        public static Task DepositAsync(CashDto dto) =>
-            ApiClient.PostAsync("api/accounts/deposit", dto, requireAuth: true);
+        public static Task DepositAsync(CashDto dto)
+        {
+            return ApiClient.PostAsync("api/accounts/deposit", dto, requireAuth: true);
+        }
 
-        public static Task WithdrawAsync(CashDto dto) =>
-            ApiClient.PostAsync("api/accounts/withdraw", dto, requireAuth: true);
+        public static Task WithdrawAsync(CashDto dto)
+        {
+            return ApiClient.PostAsync("api/accounts/withdraw", dto, requireAuth: true);
+        }
 
-        public static Task TransferAsync(TransferDto dto) =>
-            ApiClient.PostAsync("api/accounts/transfer", dto, requireAuth: true);
+        public static Task TransferAsync(TransferDto dto)
+        {
+            return ApiClient.PostAsync("api/accounts/transfer", dto, requireAuth: true);
+        }
 
         // ===== STATEMENT =====
-        public static Task<TransactionDto[]> StatementAsync(StatementQueryDto dto) =>
-            ApiClient.PostAsync<TransactionDto[]>("api/accounts/statement", dto, requireAuth: true);
+        public static Task<TransactionDto[]> StatementAsync(StatementQueryDto dto)
+        {
+            return ApiClient.PostAsync<TransactionDto[]>("api/accounts/statement", dto, requireAuth: true);
+        }
     }
 }
+
 
 
 
